@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Découvrez Hong-Kong - Guide Touristique d'un étudiant en semestre à HKUST</title>
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header et Navigation */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        /* Contenu principal */
+        main {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 2rem;
+        }
+
+        /* Section d'introduction */
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .intro h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .intro-image {
+            max-width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        /* Sections des lieux */
+        .lieu-section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .lieu-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .lieu-header {
+            background: #3498db;
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lieu-header h2 {
+            margin: 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lieu-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .lieu-content.active {
+            padding: 2rem;
+            max-height: 5000px;
+        }
+
+        .lieu-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .image-groupe {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+/*        .image-groupe img {
+            flex: 1;
+            min-width: 300px;
+            max-height: 500px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        } */
+        .image-groupe img {
+            flex: 1;
+            min-width: 300px;
+            max-height: 70vh;          /* 👈 hauteur maximale = 70 % de la hauteur de l’écran */
+            height: auto;              /* garde les proportions */
+            object-fit: cover; /*contain;       /* jamais coupée */
+            /*background-color: #f8f9fa; /* 👈 fond neutre derrière les bandes éventuelles */
+            border-radius: 12px;       /* coins arrondis */
+            overflow: clip; /*hidden;          /* assure que les coins arrondis soient bien appliqués */
+            display: block;            /* évite les petits espaces sous l’image */
+            background: none;       /* aucun fond ajouté */
+            transition: transform 0.3s ease;
+        }
+
+        .image-groupe img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .image-groupe {
+                flex-direction: column;
+            }
+            
+            .image-groupe img {
+                min-width: 100%;
+                max-height: 50vh;   /* hauteur plus compacte sur mobile */
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Hong-Kong</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#lieux">Lieux à visiter</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <!-- Section d'introduction -->
+        <section id="accueil" class="intro">
+            <h1>Bienvenue à Hong-Kong</h1>
+            <p>Découvrez la beauté et la richesse culturelle de cette ville extraordinaire à travers ce guide complet. Les activités les plus insolites et marquantes ! Pas forcément que du touristique pur ;)</p>
+            <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+            <div class="image-groupe">
+                <img src="Photos/vue_1.jpg" alt="Vue panoramique de Hong-Kong" class="intro-image">
+                <img src="Photos/film_view.jpg" alt="Vue de film de Hong-Kong" class="intro-image2">
+            </div>
+            <p>Hong-Kong vous accueille avec ses paysages à couper le souffle, sa culture vibrante et son histoire fascinante. 
+               Explorez ses trésors cachés et ses monuments emblématiques à travers ce guide touristique.</p>
+            <img src="Photos/Coucher_soleil.jpeg" alt="Vue du coucher de soleil depuis HKUST" class="intro-image">
+        </section>
+
+        <!-- Sections des lieux touristiques -->
+        <section id="lieux">
+            <!-- Lieu 1 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Le Grand Bouddha</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Le Grand Bouddha est l'une des attractions les plus emblématiques de Hong-Kong.
+                                Le Grand Bouddha est l'une des attractions les plus emblématiques de Hong-Kong. 
+                        Cette statue majestueuse domine la ville du haut de ses 34 mètres. 
+                        Située sur l'île de Lantau, elle se découvre au terme d’un trajet déjà très dépaysant, 
+                        via une super randonnée ou un téléphérique à flanc de montagne. 
+                        L’arrivée au pied de la statue, entourée de brume ou baignée de soleil, donne vraiment 
+                        l’impression de quitter la ville pour entrer dans un lieu de retraite spirituelle.</p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/BigBuddah/vue_face.jpg" alt="Vue frontale du Grand Bouddha">
+                        <img src="Photos/BigBuddah/vue_profil.jpg" alt="Détails architecturaux du Grand Bouddha">
+                    </div>
+                    
+                    <p>Construite en 1993, la statue est faite de bronze et pèse plus de 250 tonnes. 
+                       Les visiteurs peuvent monter les 268 marches pour atteindre la plateforme 
+                       et profiter d'une vue panoramique exceptionnelle sur la ville.
+                       Le retour en téléphérique peut offrire une splendide vue au coucher de soleil.</p>
+                    
+                    <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+                    <div class="image-groupe">
+                        <img src="Photos/BigBuddah/vue_dos.jpg" alt="Vue depuis la plateforme du Grand Bouddha">
+                        <img src="Photos/BigBuddah/coucher_soleil.jpg" alt="Vue de loin">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 2 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Central</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Le quartier des affaires est un endroit mythique de Hong-Kong, visible dans la plupart des films 
+        qui ont été tournés dans cette merveilleuse ville.
+        Il s'appelle Central, et la vue la plus iconique s'observe depuis la promenade Tsim Tsa Tsui.
+        De jour, on découvre une skyline ultra moderne, avec des tours de verre et d’acier qui se reflètent 
+        dans le port. De nuit, tout s’illumine : les gratte-ciel deviennent un véritable mur de lumière 
+        qui résume à lui seul l’image futuriste de Hong-Kong.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Central/tsim_tsa_tsui.jpg" alt="Vue depuis Tsim Tsa Tsui">
+                        <img src="Photos/Central/vue_nuit.jpg" alt="Vue similaire, nuit.">
+                        <img src="Photos/Central/1.jpg" alt="Vue similaire, nuit.">
+                        <img src="Photos/Central/2.jpg" alt="Vue similaire, nuit.">
+                    </div>
+                    
+                    <p>Le quartier, au-delà de sa vue d'ensemble, est spectaculaire depuis l'intérieur également. 
+        En se promenant entre les tours, on passe d’esplanades modernes à des passerelles aériennes, 
+        de centres commerciaux gigantesques à des parcs parfaitement entretenus. 
+        Le contraste entre les immeubles de bureaux ultra haut de gamme et les petites rues adjacentes 
+        est saisissant, et l’on sent vraiment le rythme d’une grande métropole internationale.</p>
+                    
+                    <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+                    <div class="image-groupe">
+                        <img src="Photos/Central/vue_mixte.jpg" alt="Vue depuis un jardin intérieur">
+                        <img src="Photos/Central/vue_jardins.jpg" alt="Vue depuis jardins">
+                    </div>
+
+                    <p>C'est l'occasion de se balader dans les jardins, le bord de la mer ou entre les immeubles 
+        où les magasins et centres commerciaux foisonnent. 
+        On peut facilement y passer une après-midi entière, entre shopping, cafés avec vue, 
+        et simples flâneries le long du waterfront. 
+        Si tu aimes les ambiances urbaines et les skylines impressionnantes, Central est clairement 
+        un passage obligé.</p>
+                    
+                    <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+                    <div class="image-groupe">
+                        <img src="Photos/Central/immeubles.jpg" alt="Immeubles">
+                        <img src="Photos/Central/vue_mer.jpg" alt="Vue depuis promenade vélo au bord de la mer">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 3 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Les vieux quartiers</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Les vieux quartiers ne sont pas la plus belle et insolite partie de Hong-Kong, 
+        mais ils font partie de l'une des plus authentiques et intéressante d'un point de vue historique et culturel.
+        C'est aussi l'occasion de découvrir des temples locaux. 
+        Ici, on quitte les grands boulevards et les gratte-ciel pour des rues plus étroites, 
+        des façades un peu vieillissantes, des néons, des marchés de rue et des étals qui débordent sur le trottoir. 
+        C’est un endroit parfait pour sentir la vie quotidienne des habitants, loin des cartes postales.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Vieux/temple.jpg" alt="Temple">
+                        <img src="Photos/Vieux/trou.jpg" alt="Porte de temple">
+                    </div>
+                    
+                    <p>Les quartiers environnants regorgent des immeubles les plus typiques de Hong-Kong. 
+        Niveau architectural, vous aurez aussi la possibilité de voir des pagodes ! 
+        On y trouve des façades couvertes de climatiseurs, du linge qui sèche aux fenêtres 
+        et des enseignes colorées qui forment un paysage urbain très cinématographique. 
+        Entre deux bâtiments, on tombe parfois sur un petit temple, un autel, ou une cour intérieure tranquille, 
+        ce qui crée un contraste permanent entre spiritualité, tradition et agitation urbaine.</p>
+                    
+                    <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+                    <div class="image-groupe">
+                        <img src="Photos/Vieux/immeuble.jpg" alt="Immeuble">
+                        <img src="Photos/Vieux/pagode.jpg" alt="Pagode">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 4 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Chi Lin Nunnery</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Véritable havre de sérénité au cœur de l'effervescence de Hong Kong, le Chi Lin Nunnery vous transporte dans un monde d'harmonie et de pureté. Ce monastère bouddhiste, entièrement construit en bois de cèdre sans aucun clou selon les techniques architecturales Tang, déploie un ensemble de pavillons élégants, de jardins paisibles et de cours tranquilles. Promenez-vous parmi les lotus sacrés, admirez les précieuses statues de bois doré et laissez le parfum de l'encens apaiser votre esprit.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/ChiLinNunnery/bat_vert.jpg" alt="batvert">
+                        <img src="Photos/ChiLinNunnery/monast.jpg" alt="temple">
+                        <img src="Photos/ChiLinNunnery/imm1.jpg" alt="immeubles">
+                        <img src="Photos/ChiLinNunnery/imm2.jpg" alt="immeubles">
+                    </div>
+                    
+                    <p>À côté, le jardin Nan Lian, modèle d'art paysager classique chinois, complète cette immersion parfaite dans une philosophie millénaire, offrant une évasion contemplative inoubliable. L'un de mes lieux préférés de Hong-Kong sur tout mon voyage !!</p>
+                    
+                    <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+                    <div class="image-groupe">
+                        <img src="Photos/ChiLinNunnery/jardins.jpg" alt="jardins">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 5 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Suicide Cliff</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Surplombant Hong Kong du haut de ses 400 mètres, Suicide Cliff est un site qui vous coupe le souffle, au sens propre comme au figuré. Accessible après une randonnée exigeante à travers la forêt luxuriante du parc national de Ma On Shan, ce promontoire spectaculaire offre une vue panoramique vertigineuse sur les gratte-ciel de Kowloon, le port et les îles lointaines. Le spectacle, surtout au coucher du soleil lorsque la ville s'embrase de lumières, est d'une puissance inoubliable. Un lieu impressionnant qui rappelle la beauté sauvage et majestueuse des paysages entourant la frénésie urbaine.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/SuicideCliff/rocher1.jpg" alt="rocher1">
+                        <img src="Photos/SuicideCliff/rocher2.jpg" alt="rocher2">
+                    </div>
+                    
+                    <p>Le sentier peut être physique, avec des passages plus abrupts et parfois un peu vertigineux, 
+        mais chaque effort est récompensé par des points de vue toujours plus spectaculaires. 
+        On passe de sections en sous-bois à des crêtes ouvertes où le vent vient rappeler qu’on est vraiment 
+        en hauteur, loin de l’animation des rues. 
+        Bref, le lieu parfait pour les photographes et amateurs d'adrénaline !</p>
+                    
+                    <!-- REMPLACER LE CHEMIN DE L'IMAGE -->
+                    <div class="image-groupe">
+                        <img src="Photos/SuicideCliff/vue.jpg" alt="vue">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lieu 6 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Hong-Kong Jockey Club (Hippodrome)</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Le Hong Kong Jockey Club est l’une des institutions les plus prestigieuses et emblématiques de la ville, fondé au XIXᵉ siècle et devenu aujourd’hui bien plus qu’un simple club hippique : c’est un acteur majeur de la vie sociale, culturelle et caritative de Hong Kong. Ses célèbres hippodromes, dont celui de Happy Valley en plein cœur de la ville, offrent des soirées de courses spectaculaires dans une ambiance électrique, où locaux, expatriés et visiteurs se mêlent autour de tribunes animées, de bars élégants et de restaurants raffinés. C’est aussi un lieu apprécié pour sa nightlife, particulièrement apprécié des Européens qui retrouvent ici un mélange unique entre tradition britannique, atmosphère festive et modernité asiatique, idéal pour profiter d’une soirée mémorable.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/JockeyClub/course.jpg" alt="course">
+                        <img src="Photos/JockeyClub/nightlife.jpg" alt="nightlife">
+                    </div>
+
+                    <p>
+        Même si l’on ne parie pas, l’expérience vaut le détour rien que pour l’ambiance : la pelouse au centre de 
+        la piste, les annonces au micro, les chevaux qui s’élancent, et la skyline de Hong-Kong en toile de fond. 
+        C’est un excellent endroit pour vivre une facette plus festive et sociale de la ville, différente des visites 
+        classiques de temples ou de randonnées.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- Lieu 7 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Kam Shan Country Park</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p> Un très joli parc rempli de singes vagabondant en toute liberté. Attention aux épisodes grivois pour les âmes chastes ! Les singes ne sont pas agressifs tant que vous ne les approchez pas trop. Les singes rajoutent une vrai originalité à ce parc agréable en lui-même pour marcher.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Kam Shan Country Park/singes.jpg" alt="singes">
+                        <img src="Photos/Kam Shan Country Park/paysage.jpg" alt="paysage">
+                        <img src="Photos/Kam Shan Country Park/bebe.jpg" alt="bebe">
+                        <img src="Photos/Kam Shan Country Park/nature.jpg" alt="nature">
+                        <img src="Photos/Kam Shan Country Park/tranchee.jpg" alt="tranchee">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 8 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Le temple des 10000 Bouddahs</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Pleins de Bouddahs marrants ! 
+        Le temple des 10000 Bouddahs se distingue par le chemin qui y mène : un long escalier bordé de statues 
+        dorées, toutes différentes, avec des expressions, des poses et des accessoires parfois totalement improbables. 
+        On a l’impression de monter au milieu d’une galerie de personnages, entre sérieux et humour, ce qui rend 
+        l’ascension à la fois spirituelle et très ludique.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/10000 Bouddah temple/escaliers.jpg" alt="escaliers">
+                        <img src="Photos/10000 Bouddah temple/funnyBouddah.jpg" alt="bouddah marrant">
+                        <img src="Photos/10000 Bouddah temple/temples.jpg" alt="temples">
+                        <img src="Photos/10000 Bouddah temple/triple.jpg" alt="triple bouddah">
+                        <img src="Photos/10000 Bouddah temple/bouddahs.jpg" alt="bouddahs">
+                    </div>
+
+                    <p>
+        Une fois en haut, on découvre un ensemble de temples et de salles de prière, avec des murs littéralement 
+        couverts de petites statues de Bouddha. 
+        L’ambiance est assez unique : à la fois respectueuse et amusée, car on ne peut pas s’empêcher de chercher 
+        les statues les plus étranges ou les plus drôles. 
+        C’est un lieu parfait si tu veux un mélange de spiritualité, de marche et de photos insolites.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lieu 9 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Stanley</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Un quartier plein d'expatriés, avec un joli bord de mer. 
+        Un peu le Los Angeles de Hong-Kong ! 
+        On y trouve une ambiance beaucoup plus détendue que dans le centre-ville, avec des cafés, des bars, 
+        des restaurants en bord de mer et une promenade agréable le long de la côte. 
+        Le marché de Stanley permet aussi d’acheter des souvenirs, des vêtements ou des objets déco 
+        dans une atmosphère très touristique mais sympa.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Stanley/cote.jpg" alt="cote">
+                        <img src="Photos/Stanley/temple.jpg" alt="statues">
+
+                    </div>
+
+                    <p>
+        C’est un bon endroit pour prendre une pause plage/mer dans le séjour, se balader tranquillement 
+        et profiter de la vue sur l’océan et les collines environnantes. 
+        Pour ceux qui restent longtemps à Hong-Kong, c’est une destination idéale pour un après-midi 
+        sans pression, à seulement quelques dizaines de minutes du centre.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lieu 10 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Hong Kong University of Science and Technology (HKUST)</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Mon Université ! Ne vaut pas forcément le détour, mais on peut y avoir vue sur un superbe lever de soleil parfois.
+        Le campus est situé en bord de mer, avec des bâtiments qui descendent en terrasses vers l’eau, 
+        ce qui donne des perspectives assez spectaculaires au petit matin ou en fin de journée. 
+        Quand le ciel est dégagé, la lumière se reflète sur la mer et les îles au loin, offrant un décor 
+        assez incroyable pour… aller en cours.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/HKUST view/skust.jpg" alt="skust">
+                        <img src="Photos/HKUST view/lever_soleil.jpg" alt="lever_soleil">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 11 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Randonnées</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Ce qui fait la force de Hong-Kong, c'est qu'à côté de toute l'urbanisation se cachent 
+        des randonnées splendides inoubliables ! 
+        Il existe une multitude de sentiers plus ou moins difficiles, qui traversent des forêts denses, 
+        longent des crêtes avec vue sur la mer ou mènent à des plages isolées. 
+        En quelques stations de métro ou de bus, on passe des gratte-ciel aux collines verdoyantes, 
+        ce qui donne vraiment l’impression d’avoir deux mondes en un seul voyage.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Randos/tai_.jpg" alt="tai jsp quoi">
+
+                    </div>
+
+                        <p>
+        Que ce soit pour une petite balade de deux heures ou pour une grosse journée de marche, 
+        les randonnées de Hong-Kong permettent de se déconnecter totalement de l’ambiance urbaine. 
+        Certaines offrent des points de vue très connus (Dragon’s Back, Lion Rock, etc.), 
+        d’autres sont plus confidentielles mais tout aussi belles. 
+        Si tu aimes marcher, c’est clairement un aspect du séjour à ne pas négliger.
+                        </p>
+                </div>
+            </div>
+
+            <!-- Lieu 12 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Iles</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Plein d'îles sympayhiques où aller en bateau depuis Sai Kung, en voici une très jolie et sympa pour se baigner !
+                        La traversée en bateau est déjà une expérience en soi, entre falaises, petites criques et eaux turquoise. 
+        On débarque souvent sur des plages beaucoup plus calmes que celles proches de la ville, 
+        avec une ambiance presque insulaire loin du tumulte.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Iles/vue1.jpg" alt="vue">
+                        <img src="Photos/Iles/vue2.jpg" alt="vue">
+                        <img src="Photos/Iles/vue3.jpg" alt="vue">
+                        <img src="Photos/Iles/vue4.jpg" alt="vue">
+                        <img src="Photos/Iles/vue5.jpg" alt="vue">
+                        <img src="Photos/Iles/vue6.jpg" alt="vue">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 13 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Sai Kung East Country Park et ses plages</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  A l'est, il y a un grand espace naturel avec de belles randonnées et des plages... exceptionnelles, et immenses. En plus, il n'y a personne ! Un vrai paradis complètement surprenant quand on pense à Hong-Kong. Les sentiers mènent à des plages de sable fin bordées de collines verdoyantes, 
+        avec une eau claire et parfois des vagues, ce qui donne un côté très sauvage à l’endroit.
+                    </p>
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Plages Sai Kung East Country Park/vue1.jpg" alt="vue">
+                        <img src="Photos/Plages Sai Kung East Country Park/vue2.jpg" alt="vue">
+                        <img src="Photos/Plages Sai Kung East Country Park/vue3.jpg" alt="vue">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 14 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Monster building</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>   L'un des endroits les plus iconiques de Hong-Kong, que ce soit pour ses immeubles caractéristiques 
+        ou pour les fameuses scènes de film qui y ont été tournées... 
+        Le “Monster Building” est en réalité un ensemble de résidences formant une cour intérieure très serrée, 
+        où les façades semblent se superposer à l’infini. 
+        L’effet visuel est assez dingue, surtout quand on se place au centre et qu’on regarde vers le ciel.
+                    </p>
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Monster building/monster_building.jpg" alt="mb">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <section id="accueil" class="intro">
+            <h1>Voyages voisins</h1>
+            <p>Aller à Hong-Kong sur une longue période est évidemment l'occasion de faire quelques pays voisins !</p>
+            </section>
+
+
+            <!-- Lieu 1 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Taiwan</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Un des pays les plus voulus, intéressant culturellement aussi. Un des pays les plus voulus, intéressant culturellement aussi. 
+        Si vous y allez à la bonne période, vous pourrez aussi voir le lancer de lanternes ! 
+        Taïwan offre un mélange très agréable entre grandes villes modernes, montagnes verdoyantes, 
+        villages traditionnels et côtes sauvages. 
+        On peut facilement alterner temples, marchés de nuit, randonnées et paysages de rizières, 
+        le tout avec une ambiance très accueillante et un coût de vie raisonnable.
+        Si vous y allez à la bonne période, vous pourrez aussi voir le festival des lanternes !
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Taiwan/cascade.jpg" alt="cascade">
+                        <img src="Photos/Taiwan/rural.jpg" alt="rural">
+                        <img src="Photos/Taiwan/rizieres.jpg" alt="rizieres">
+                        <img src="Photos/Taiwan/temple.jpg" alt="temple">
+                        <img src="Photos/Taiwan/jiungfen.jpg" alt="jiungfen">
+                        <img src="Photos/Taiwan/lanternes.jpg" alt="lanternes">
+                        <img src="Photos/Taiwan/nuit.jpg" alt="nuit">
+                        <img src="Photos/Taiwan/taipei101.jpg" alt="taipei101">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lieu 2 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Shenzhen</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  La ville chinoise la plus proche de Hong-Kong, Shenzhen directement accessible via les transports en commun. C'est une ville peu coûteuse à côté de HK, avec des immeubles grandioses et parmi les plus grands marchés (y compris de faux). Entraînez-vous à la négociation ! Il y a aussi des spa incroyables...
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Shenzhen/immeubles.jpg" alt="immeubles">
+                        <img src="Photos/Shenzhen/chaussures.jpg" alt="chaussures">
+                        <img src="Photos/Shenzhen/elec.jpg" alt="elec">
+                        <img src="Photos/Shenzhen/spa.jpg" alt="spa">
+                    </div>
+                    <p>
+        Shenzhen donne vraiment l’impression d’être dans une ville futuriste géante, 
+        avec des centres commerciaux immenses, des quartiers entiers dédiés à l’électronique 
+        et des marchés où l’on trouve de tout, du vêtement de marque (vrai ou faux) 
+        aux gadgets les plus improbables. 
+        Le soir, les gratte-ciel s’illuminent de jeux de lumière très travaillés, 
+        ce qui en fait une destination parfaite pour une journée shopping et une soirée en ville 
+        pour pas trop cher par rapport à Hong-Kong.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Lieu 3 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Macao</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  A faire absolument ! Accessible directement depuis HK (bateau ou bus, moins cher), c'est le Las Vegas d'Asie.
+                        Entre héritage portugais, ruelles historiques et casinos gigantesques, 
+        Macao mélange architecture coloniale, ambiance de vieille ville européenne 
+        et démesure totale des complexes de jeux modernes.
+                    </p>
+                    <p>  Daylife
+                    </p>
+
+                    <p>
+        En journée, on peut se promener dans le centre historique, classé au patrimoine mondial, 
+        avec ses églises, ses anciennes bâtisses portugaises, ses pavés et ses façades colorées. 
+        C’est assez déroutant de retrouver ce type d’architecture en Asie, 
+        et l’on passe facilement de petites places tranquilles à des avenues dominées par les casinos.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Macao/eglise.jpg" alt="eglise">
+                        <img src="Photos/Macao/hist.jpg" alt="hist">
+                        <img src="Photos/Macao/rue.jpg" alt="rue">
+                        <img src="Photos/Macao/casino_lisboa.jpg" alt="casino_lisboa">
+                        <img src="Photos/Macao/arene.jpg" alt="arene">
+                    </div>
+
+                    <p>  Nightlife (peu d'images directement des jeux d'argent dans les casinos car les photos y sont interdites)
+                    </p>
+
+                    <p>
+        Le soir, tout change de dimension : les casinos s’illuminent, les répliques d’édifices célèbres 
+        (Tour Eiffel, canaux façon Venise, etc.) prennent vie, et l’intérieur des complexes 
+        donne l’impression d’être dans un décor de film. 
+        Même sans jouer, se balader dans ces lieux est une expérience à part entière, 
+        entre luxe et extravagance totale.
+                    </p>
+
+                    <div class="image-groupe">
+                        <img src="Photos/Macao/rue_nuit.jpg" alt="rue_nuit">
+                        <img src="Photos/Macao/Nightlife/tours.jpg" alt="tours">
+                        <img src="Photos/Macao/Nightlife/bigben.jpg" alt="bigben">
+                        <img src="Photos/Macao/Nightlife/eiffel.jpg" alt="eiffel">
+                        <img src="Photos/Macao/Nightlife/venise.jpg" alt="venise">
+                        <img src="Photos/Macao/Nightlife/riviere.jpg" alt="riviere">
+                        <img src="Photos/Macao/Nightlife/casino.jpg" alt="casino">
+                        <img src="Photos/Macao/Nightlife/couloir.jpg" alt="couloir">
+                        <img src="Photos/Macao/Nightlife/int.jpg" alt="int">
+                        <img src="Photos/Macao/Nightlife/deco.jpg" alt="deco">
+                        <img src="Photos/Macao/Nightlife/fontaine.jpg" alt="fontaine">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Lieu 4 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Guangzhou</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Peut-être le meilleur week-end de mon séjour. Capitale culinaire de la Chine, rien n'est cher comparé à Hong-Kong : saunas, massages, taxis, bars, restaurants étoilés,... Au-delà des monuments c'est pour dépenser sans compter que j'ai adoré cette grande ville.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Guangzhou/rue.jpg" alt="rue">
+                        <img src="Photos/Guangzhou/pagode.jpg" alt="pagode">
+                        <img src="Photos/Guangzhou/place.jpg" alt="place">
+                        <img src="Photos/Guangzhou/temple.jpg" alt="temple">
+                        <img src="Photos/Guangzhou/tour.jpg" alt="tour">
+                        <img src="Photos/Guangzhou/vitre.jpg" alt="vitre">
+                        <img src="Photos/Guangzhou/vue.jpg" alt="vue">
+                        <img src="Photos/Guangzhou/quartier.jpg" alt="quartier">
+                        <img src="Photos/Guangzhou/bar.jpg" alt="bar">
+                    </div>
+
+                    <p>
+        Entre les quartiers modernes, les tours illuminées la nuit, les vieux temples cachés 
+        au milieu des bâtiments récents et les grandes avenues commerçantes, Guangzhou offre un condensé 
+        de ce que l’on imagine d’une grande métropole chinoise. 
+        Mais ce sont surtout la nourriture (dim sum, spécialités locales) et le rapport qualité/prix 
+        des activités de détente qui font la différence : pour le budget d’une soirée moyenne à Hong-Kong, 
+        on vit ici un week-end de luxe.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lieu 5 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Vietnam</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  L'un des plus beaux endroits du monde. Vous êtes dans Avatar, avec des paysages irréels de beauté et de nature. Ha Giang Loop, Ninh Binh, Ha Long Bay, ... à faire au moins une fois dans sa vie.
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Vietnam/village.jpg" alt="village">
+                        <img src="Photos/Vietnam/route.jpg" alt="route">
+                        <img src="Photos/Vietnam/collines.jpg" alt="collines">
+                        <img src="Photos/Vietnam/coucher.jpg" alt="coucher">
+                        <img src="Photos/Vietnam/moto.jpg" alt="moto">
+                        <img src="Photos/Vietnam/coucher2.jpg" alt="coucher2">
+                        <img src="Photos/Vietnam/pic.jpg" alt="pic">
+                        <img src="Photos/Vietnam/ninhbin.jpg" alt="ninhbin">
+                        <img src="Photos/Vietnam/riziere.jpg" alt="riziere">
+                    </div>
+
+                    <p>
+        Les routes de montagne d’Ha Giang, parcourues en scooter, offrent des panoramas vertigineux, 
+        avec des cols, des vallées profondes et des villages perdus dans la brume. 
+        Ninh Binh, souvent appelée la “Baie d’Halong terrestre”, enchaîne pics karstiques, rizières 
+        et balades en barque, tandis que la Baie d’Halong elle-même permet de naviguer entre des centaines 
+        d’îlots. 
+        L’ensemble donne vraiment l’impression d’être dans un autre monde, avec une nature spectaculaire 
+        à chaque virage.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lieu 6 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Thaïlande (Ko Yao Yai)</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Je n'ai pas pu rester plus de 2 jours en Thaïlande, mais j'ai fait l'île de Ko Yao Yai et je m'en rappellerai toute ma vie. C'est l'aventure sur une île comme dans le rêves, avec une vraie sensation de liberté surtout si vous prenez un scooter !!
+                    </p>
+                    
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Thaïlande/cabanon.jpg" alt="cabanon">
+                        <img src="Photos/Thaïlande/jardin.jpg" alt="jardin">
+                        <img src="Photos/Thaïlande/plage.jpg" alt="plage">
+                        <img src="Photos/Thaïlande/crabe.jpg" alt="crabe">
+                        <img src="Photos/Thaïlande/rue.jpg" alt="rue">
+                        <img src="Photos/Thaïlande/rochers.jpg" alt="rochers">
+                        <img src="Photos/Thaïlande/ilots.jpg" alt="ilots">
+                        <img src="Photos/Thaïlande/sable.jpg" alt="sable">
+                    </div>
+
+                    <p>
+        L’île est beaucoup plus tranquille que les spots thaïlandais ultra touristiques, 
+        ce qui donne un vrai sentiment d’évasion. 
+        Entre les petites routes bordées de végétation, les plages quasi désertes, 
+        les cabanons au bord de l’eau et les îlots qui se dessinent à l’horizon, 
+        on a vraiment l’impression de vivre un rêve éveillé. 
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lieu 6 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Guilin et alentours</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Magnifique, plein d'activités incroyables et insolites pour pas cher. Prenez un taxi qui vous fait visiter les alentours et des activités, ça nous a coûté à peine 20€/pers pour 2 jours, avec un taxi qui nous organise spontanément un road trip de visite guidée de 9h à 23h !!
+                        </p>
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Guilin/pagode.jpg" alt="pagode">
+                    <!--    <img src="Photos/Guilin/lac.jpg" alt="lac"> -->
+                        <img src="Photos/Guilin/bill.jpg" alt="bill">
+                        <img src="Photos/Guilin/montagnes.jpg" alt="montagnes">
+                    <!--    <img src="Photos/Guilin/nature.jpg" alt="nature"> -->
+                        <img src="Photos/Guilin/grotte.jpg" alt="grotte">
+                        <img src="Photos/Guilin/radeau.jpg" alt="radeau">
+                    <!--    <img src="Photos/Guilin/joli.jpg" alt="joli"> -->
+                    <!--    <img src="Photos/Guilin/dore.jpg" alt="dore"> -->
+                        <img src="Photos/Guilin/deco.jpg" alt="deco">
+                        <img src="Photos/Guilin/mannequins.jpg" alt="mannequins">
+                        <img src="Photos/Guilin/rose.jpg" alt="rose">
+                    </div>
+                    <p>
+        La région de Guilin est célèbre pour ses reliefs karstiques, ses rivières et ses paysages 
+        qui semblent sortis d’une peinture chinoise traditionnelle. 
+        Entre les pagodes illuminées au bord des lacs, les grottes spectaculaires, 
+        les balades en radeau sur la rivière Li et les petits villages environnants, 
+        chaque activité apporte un décor différent.
+                    </p>
+                </div>
+            </div>
+            
+
+            <!-- Lieu 7 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Singapour</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Futuriste, une architecture masterclass et des varans en liberté, Singapour est d'une classe et richesse culturelle incroyable, l'essentiel se fait en 2 jours je dirais.
+                        </p>
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Singapour/aeroport.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/futuriste.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/hotel.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/immeule.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/mosquee.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/prom.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/quartier.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/cafe.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/arbres1.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/arbres2.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/parc.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/varan.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/vue1.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/vue2.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/vue3.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/vue4.jpg" alt="Singapour">
+                        <img src="Photos/Singapour/vue_soir.jpg" alt="Singapour">
+                    </div>
+                    <p>
+        Entre l’aéroport déjà incroyable, les jardins futuristes de Gardens by the Bay, 
+        les quartiers ethniques (Little India, Chinatown, Arab Street), 
+        les varans qui se promènent dans certains parcs et les vues sur Marina Bay Sands, 
+        la ville enchaîne les ambiances très différentes. 
+        Tout est propre, bien organisé, et la diversité culturelle se ressent autant dans l’architecture 
+        que dans la nourriture.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- Lieu 8 -->
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Malaisie</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>  Les images ci-dessous sont issues de Malacca, Kuala Lumpur et l'archipel d'îles Langkawi. Il fait super chaud selon la saison, mais la Malaisie regorge d'endroits très atypiques avec de l'insolite côté faune et flore pour nous occidentaux ! Les lieux urbains sont très touristiques. Ce n'est pas cher du tout, à Kuala Lumpur on avait un hostel très confortable, intégré à un immense complexe avec salle de sport, piscine sur le toit avec vue sur la ville (notamment les tours Pétronas), ... pour moins de 20€. A Langkawi, il faut prendre le scooter (l'essence ne coûte vraiment rien !) et aller sur des plages paradisiaques. Il y a des activités comme les mangroves, une grotte de chauves-souris, ...
+                        </p>
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                    <div class="image-groupe">
+                        <img src="Photos/Malaisie/malacca_jour.jpg" alt="Malacca">
+                        <img src="Photos/Malaisie/malacca_nuit.jpg" alt="Malacca">
+                        <img src="Photos/Malaisie/marche.jpg" alt="Malacca">
+                        <img src="Photos/Malaisie/mosquee.jpg" alt="Malacca">
+                        <img src="Photos/Malaisie/riviere.jpg" alt="Malacca">
+                        <img src="Photos/Malaisie/bouddah.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/vue1.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/vue2.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/singe.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/tours.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/vue3.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/papillon.jpg" alt="Kuala Lumpur">
+                        <img src="Photos/Malaisie/aigle.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/vue5.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/bateau.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/vue_4.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/bat.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/mangroves.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/boue.jpg" alt="Langkawi">
+                        <img src="Photos/Malaisie/plage.jpg" alt="Langkawi">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Lieu 2 -->
+             <!--
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Le Vieux Quartier</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Plongez dans l'histoire de Hong-Kong en explorant son vieux quartier, 
+                       où l'architecture traditionnelle rencontre la vie moderne.</p>
+                    -->        
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                     <!--
+                    <div class="image-groupe">
+                        <img src="photo_old_town1.jpg" alt="Ruelle typique du vieux quartier">
+                        <img src="photo_old_town2.jpg" alt="Marché traditionnel">
+                    </div>
+                    
+                    <p>Ce quartier historique abrite de nombreux temples anciens, des maisons 
+                       traditionnelles et des échoppes artisanales. Ne manquez pas le marché 
+                       nocturne pour goûter aux spécialités locales.</p>
+                </div>
+            </div>
+        -->
+            <!-- Lieu 3 -->
+             <!--
+            <div class="lieu-section">
+                <div class="lieu-header" onclick="toggleSection(this)">
+                    <h2>Les Jardins Botaniques</h2>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="lieu-content">
+                    <p>Un havre de paix au cœur de la ville, les jardins botaniques s'étendent 
+                       sur plus de 40 hectares et abritent une collection exceptionnelle de 
+                       plantes tropicales.</p>
+                    -->
+                    <!-- REMPLACER LES CHEMINS DES IMAGES -->
+                     <!--
+                    <div class="image-groupe">
+                        <img src="photo_garden1.jpg" alt="Jardin de fleurs tropicales">
+                        <img src="photo_garden2.jpg" alt="Étang aux nénuphars">
+                    </div>
+                    
+                    <p>Parcourez les différentes zones thématiques : le jardin de bambous, 
+                       la roseraie, la forêt tropicale et le jardin médicinal. Idéal pour 
+                       une promenade relaxante loin de l'agitation urbaine.</p>
+                </div>
+            </div>
+        -->
+            <!-- AJOUTER D'AUTRES SECTIONS DE LIEUX ICI -->
+            <!-- Copier-coller la structure "lieu-section" et modifier les textes et chemins d'images -->
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 Guide Touristique de Hong-Kong. Tous droits réservés.</p>
+        <p>Photos personnelles - Site créé avec passion pour partager les beautés de Hong-Kong</p>
+    </footer>
+
+    <script>
+        // Fonction pour ouvrir/fermer les sections
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            content.classList.toggle('active');
+            icon.textContent = content.classList.contains('active') ? '−' : '+';
+        }
+
+        // Ouvrir la première section par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.lieu-header');
+            if (firstSection) {
+                toggleSection(firstSection);
+            }
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
