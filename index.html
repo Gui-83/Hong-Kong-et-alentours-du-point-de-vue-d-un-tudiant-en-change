@@ -210,6 +210,7 @@
             <div class="logo">Hong-Kong</div>
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#carte">Carte</a></li>
                 <li><a href="#lieux">Lieux à visiter</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -231,6 +232,221 @@
                Explorez ses trésors cachés et ses monuments emblématiques à travers ce guide touristique.</p>
             <img src="Photos/Coucher_soleil.jpeg" alt="Vue du coucher de soleil depuis HKUST" class="intro-image">
         </section>
+
+        <!-- ========== CARTE INTERACTIVE ========== -->
+<style>
+  #carte-section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  #carte-section h2 {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 1.5rem 2rem;
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+  #carte-section .carte-legend {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.8rem 2rem;
+    background: #f0f4f8;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  #carte-section .carte-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+  }
+  #carte-section .carte-legend .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  #carte-section .dot-hk   { background: #e74c3c; }
+  #carte-section .dot-vois { background: #27ae60; }
+
+  #map {
+    width: 100%;
+    height: 480px;
+  }
+
+  /* Popup personnalisée */
+  .leaflet-popup-content-wrapper {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18) !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .leaflet-popup-content {
+    margin: 0 !important;
+    width: 210px !important;
+  }
+  .map-popup {
+    padding: 12px 14px;
+  }
+  .map-popup strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #2c3e50;
+    margin-bottom: 4px;
+  }
+  .map-popup p {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+  .map-popup a.goto-btn,
+  .map-popup button.goto-btn {        /* ← ajoute cette ligne */
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    transition: background 0.2s;
+    cursor: pointer;                  /* ← ajoute */
+    border: none;                     /* ← ajoute */
+  }
+  .map-popup a.goto-btn:hover {
+    background: #2c80b9;
+  }
+</style>
+
+<section id="carte">
+  <div id="carte-section">
+    <h2>🗺️ Carte interactive des lieux</h2>
+    <div class="carte-legend">
+      <span><span class="dot dot-hk"></span> Hong Kong</span>
+      <span><span class="dot dot-vois"></span> Voyages voisins</span>
+    </div>
+    <div id="map"></div>
+  </div>
+</section>
+
+<!-- Leaflet CSS + JS (CDN, pas besoin d'installer quoi que ce soit) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+(function() {
+  const map = L.map('map', { scrollWheelZoom: false }).setView([22.3, 114.17], 5);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
+
+  map.once('click', function() { map.scrollWheelZoom.enable(); });
+
+  function makeIcon(color) {
+    return L.divIcon({
+      className: '',
+      html: `<div style="width:16px;height:16px;background:${color};border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.35);cursor:pointer;"></div>`,
+      iconSize: [16, 16], iconAnchor: [8, 8], popupAnchor: [0, -10],
+    });
+  }
+
+  const iconHK   = makeIcon('#e74c3c');
+  const iconVois = makeIcon('#27ae60');
+
+  const allSections = Array.from(document.querySelectorAll('.lieu-section'));
+
+  function scrollToSection(index) {
+    const section = allSections[index];
+    if (!section) return;
+    const content = section.querySelector('.lieu-content');
+    const header  = section.querySelector('.lieu-header');
+    const icon    = header ? header.querySelector('.toggle-icon') : null;
+    if (content && !content.classList.contains('active')) {
+      content.classList.add('active');
+      if (icon) icon.textContent = '−';
+    }
+    setTimeout(function() {
+      const top = section.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }, 50);
+  }
+
+  function makePopup(lieu, icon) {
+    const marker = L.marker(lieu.coords, { icon: icon }).addTo(map);
+
+    // ✅ Popup en HTML pur, avec un bouton stylisé
+    const popupContent = `
+      <div class="map-popup">
+        <strong>${lieu.name}</strong>
+        <p>${lieu.desc}</p>
+        <button class="goto-btn" onclick="(function(){
+          var sections = document.querySelectorAll('.lieu-section');
+          var section = sections[${lieu.sectionIndex}];
+          if(!section) return;
+          var content = section.querySelector('.lieu-content');
+          var header = section.querySelector('.lieu-header');
+          var icon = header ? header.querySelector('.toggle-icon') : null;
+          if(content && !content.classList.contains('active')){
+            content.classList.add('active');
+            if(icon) icon.textContent = '−';
+          }
+          setTimeout(function(){
+            var top = section.getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({top: top, behavior: 'smooth'});
+          }, 50);
+        })()">Voir la section ↓</button>
+      </div>
+    `;
+
+    marker.bindPopup(L.popup({ maxWidth: 220 }).setContent(popupContent));
+    return marker;
+  }
+
+  // ... (mêmes données lieuxHK et lieuxVois qu'avant)
+  const lieuxHK = [
+    { name: 'Le Grand Bouddha',          coords: [22.2538, 113.9050], desc: "Statue de 34 m sur l'île de Lantau, téléphérique ou randonnée.", sectionIndex: 0 },
+    { name: 'Central',                   coords: [22.2825, 114.1558], desc: 'Skyline iconique, promenade Tsim Sha Tsui, vue de jour et de nuit.', sectionIndex: 1 },
+    { name: 'Les vieux quartiers',       coords: [22.3125, 114.1718], desc: 'Temples, pagodes, immeubles typiques et marchés de rue.', sectionIndex: 2 },
+    { name: 'Chi Lin Nunnery',           coords: [22.3403, 114.2009], desc: 'Monastère bouddhiste et jardin Nan Lian, architecture Tang.', sectionIndex: 3 },
+    { name: 'Suicide Cliff',             coords: [22.3839, 114.2369], desc: 'Promontoire à 400 m, randonnée exigeante, vue vertigineuse.', sectionIndex: 4 },
+    { name: 'Hong Kong Jockey Club',     coords: [22.2714, 114.1826], desc: 'Hippodrome de Happy Valley, soirées de courses festives.', sectionIndex: 5 },
+    { name: 'Kam Shan Country Park',     coords: [22.3731, 114.1658], desc: 'Parc verdoyant avec singes en liberté.', sectionIndex: 6 },
+    { name: 'Temple des 10 000 Bouddhas',coords: [22.3876, 114.1989], desc: 'Escalier bordé de statues dorées toutes différentes.', sectionIndex: 7 },
+    { name: 'Stanley',                   coords: [22.2192, 114.2148], desc: 'Quartier côtier détendu, marché, promenade bord de mer.', sectionIndex: 8 },
+    { name: 'HKUST',                     coords: [22.3362, 114.2634], desc: 'Campus en bord de mer, levers de soleil spectaculaires.', sectionIndex: 9 },
+    { name: 'Randonnées',                coords: [22.2483, 114.2159], desc: "Dragon's Back, Lion Rock… nature luxuriante à deux pas.", sectionIndex: 10 },
+    { name: 'Îles (Sai Kung)',           coords: [22.3787, 114.2742], desc: 'Îles accessibles en bateau, eaux turquoise, plages calmes.', sectionIndex: 11 },
+    { name: 'Sai Kung East Country Park',coords: [22.3513, 114.3476], desc: 'Plages immenses et sauvages, presque désertes.', sectionIndex: 12 },
+    { name: 'Monster Building',          coords: [22.2868, 114.2184], desc: 'Ensemble résidentiel iconique, effet visuel saisissant.', sectionIndex: 13 },
+  ];
+
+  const lieuxVois = [
+    { name: 'Taiwan',                            coords: [25.0330, 121.5654], desc: 'Temples, lanternes, rizières, randonnées — Taipei et au-delà.', sectionIndex: 14 },
+    { name: 'Shenzhen',                          coords: [22.5431, 114.0579], desc: 'Ville futuriste, marchés géants, spas incroyables.', sectionIndex: 15 },
+    { name: 'Macao',                             coords: [22.1987, 113.5439], desc: "Le Las Vegas d'Asie : héritage portugais + casinos monstres.", sectionIndex: 16 },
+    { name: 'Guangzhou',                         coords: [23.1291, 113.2644], desc: 'Capitale culinaire chinoise, détente et luxe pas chers.', sectionIndex: 17 },
+    { name: 'Vietnam (Ha Giang / Ninh Binh)',    coords: [22.8226, 104.9835], desc: "Paysages de rêve : cols, rizières, baie d'Halong.", sectionIndex: 18 },
+    { name: 'Thaïlande (Ko Yao Yai)',            coords: [8.0451,  98.6471],  desc: 'Île tranquille, plages quasi désertes, scooter liberté.', sectionIndex: 19 },
+    { name: 'Guilin',                            coords: [25.2744, 110.2990], desc: 'Reliefs karstiques, rivière Li, grottes, road trip pour 20 €/pers.', sectionIndex: 20 },
+    { name: 'Singapour',                         coords: [1.3521,  103.8198], desc: 'Architecture futuriste, varans, Gardens by the Bay.', sectionIndex: 21 },
+    { name: 'Malaisie (Malacca / KL / Langkawi)',coords: [3.1390,  101.6869], desc: 'Pétronas, mangroves, plages, faune tropicale.', sectionIndex: 22 },
+  ];
+
+  lieuxHK.forEach(l   => makePopup(l, iconHK));
+  lieuxVois.forEach(l => makePopup(l, iconVois));
+
+})();
+</script>
+<!-- ========== FIN CARTE ========== -->
 
         <!-- Sections des lieux touristiques -->
         <section id="lieux">
